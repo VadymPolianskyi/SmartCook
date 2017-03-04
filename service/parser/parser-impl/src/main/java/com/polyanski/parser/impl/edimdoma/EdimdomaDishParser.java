@@ -31,7 +31,7 @@ public class EdimdomaDishParser implements DishParser {
                         webSiteURL).get();
 
             Elements headers = doc.getElementsByAttributeValue("class", "card__description");
-            Elements urls = doc.select("a");
+            Elements urls = headers.select("a");
 
 
             List<String> images = imageParser.parseImages(webSiteURL);
@@ -41,7 +41,7 @@ public class EdimdomaDishParser implements DishParser {
                 Element titleEl = headers.get(i);
                String title = titleEl.child(0).text();
                 System.out.print(title + "\n");
-                Ingredient ingredient = ingredientParser.parseIngredient(urls.get(i).attr("href"));
+                Ingredient ingredient = ingredientParser.parseIngredient("https://www.edimdoma.ru" + urls.get(i).attr("href"));
                 Dish currentDish = createDish(headers.get(i), urls.get(i), images.get(i), ingredient);
                 dishes.add(currentDish);
             }

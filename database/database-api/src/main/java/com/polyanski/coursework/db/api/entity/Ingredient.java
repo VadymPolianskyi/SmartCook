@@ -2,6 +2,7 @@ package com.polyanski.coursework.db.api.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Author: vadym
@@ -22,10 +23,10 @@ public class Ingredient {
 
     @Id
     private int dishId;
-    private String ingredients;
-    private String portions;
+    private List<String> ingredients;
+    private List<String> portions;
 
-    public Ingredient(String ingredients, String portions) {
+    public Ingredient(List<String> ingredients, List<String> portions) {
         this.ingredients = ingredients;
         this.portions = portions;
     }
@@ -38,19 +39,19 @@ public class Ingredient {
         this.dishId = dishId;
     }
 
-    public String getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public String getPortions() {
+    public List<String> getPortions() {
         return portions;
     }
 
-    public void setPortions(String portions) {
+    public void setPortions(List<String> portions) {
         this.portions = portions;
     }
 }

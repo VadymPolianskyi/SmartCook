@@ -14,7 +14,7 @@ public class TestParser {
     public static void main(String[] args) {
         EdimdomaDishParser edimdomaDishParser = new EdimdomaDishParser();
 
-        List<Dish> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=3");
+        List<Dish> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=4");
         for (Dish dish : dishes) {
             System.out.println(dish);
         }
