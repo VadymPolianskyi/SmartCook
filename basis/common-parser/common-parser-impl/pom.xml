@@ -3,17 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>parser</artifactId>
+        <artifactId>common-parser</artifactId>
         <groupId>com.polyanski</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>parser-impl</artifactId>
+    <artifactId>common-parser-impl</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>com.polyanski</groupId>
-            <artifactId>parser-api</artifactId>
+            <artifactId>common-parser-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
