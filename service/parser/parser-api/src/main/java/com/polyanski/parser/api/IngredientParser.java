@@ -1,6 +1,8 @@
 package com.polyanski.parser.api;
 
-import com.polyanski.coursework.db.api.entity.Ingredient;
+import com.polyanski.common.dao.api.entities.IngredientEntity;
+
+import java.util.List;
 
 /**
  * Author: vadym
@@ -8,5 +10,5 @@ import com.polyanski.coursework.db.api.entity.Ingredient;
  * Time: 22:18
  */
 public interface IngredientParser {
-    public Ingredient parseIngredient(String webSiteURL);
+    public List<IngredientEntity> parseIngredient(String webSiteURL);
 }

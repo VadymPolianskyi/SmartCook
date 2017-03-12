@@ -1,7 +1,7 @@
 package com.polyanski.parser.impl.edimdoma;
 
-import com.polyanski.coursework.db.api.entity.Dish;
-import com.polyanski.coursework.db.api.entity.Ingredient;
+import com.polyanski.common.dao.api.entities.DishEntity;
+import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.parser.api.AbstractImageParser;
 import com.polyanski.parser.api.DishParser;
 import com.polyanski.parser.api.IngredientParser;
@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,10 +20,11 @@ import java.util.List;
  * Date: 26.02.17
  * Time: 22:48
  */
+@Component
 public class EdimdomaDishParser implements DishParser {
     @Override
-    public List<Dish> parseDishes(String webSiteURL) {
-        List<Dish> dishes = new ArrayList<>();
+    public List<DishEntity> parseDishes(String webSiteURL) {
+        List<DishEntity> dishes = new ArrayList<>();
         try {
             AbstractImageParser imageParser = new EdimdomaImageParser();
             IngredientParser ingredientParser = new EdimdomaIngredientParser();
@@ -38,11 +40,8 @@ public class EdimdomaDishParser implements DishParser {
 
             int dishesCountOnPage = headers.size();
             for (int i = 0; i < dishesCountOnPage; i++) {
-                Element titleEl = headers.get(i);
-               String title = titleEl.child(0).text();
-                System.out.print(title + "\n");
-                Ingredient ingredient = ingredientParser.parseIngredient("https://www.edimdoma.ru" + urls.get(i).attr("href"));
-                Dish currentDish = createDish(headers.get(i), urls.get(i), images.get(i), ingredient);
+                List<IngredientEntity> ingredients = ingredientParser.parseIngredient("https://www.edimdoma.ru" + urls.get(i).attr("href"));
+                DishEntity currentDish = createDish(headers.get(i), urls.get(i), images.get(i), ingredients);
                 dishes.add(currentDish);
             }
         } catch (IOException e) {
@@ -51,15 +50,18 @@ public class EdimdomaDishParser implements DishParser {
         return dishes;
     }
 
-    private Dish createDish(Element titleEl, Element urlEl, String img, Ingredient ingredient) {
+    private DishEntity createDish(Element titleEl, Element urlEl, String img, List<IngredientEntity> ingredients) {
         String url, title;
 
         title = titleEl.child(0).text();
-//        System.out.print(title + "\n");
-
         url = urlEl.attr("href");
-//        System.out.println("URL: " + url);
 
-        return new Dish(title, img, url, ingredient);
+        DishEntity dish = new DishEntity();
+        dish.setDishName(title);
+        dish.setImgName(img);
+        dish.setRefference(url);
+        dish.setIngredientEntities(ingredients);
+
+        return dish;
     }
 }

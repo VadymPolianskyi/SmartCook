@@ -1,6 +1,7 @@
 package com.polyanski.parser.api;
 
-import com.polyanski.coursework.db.api.entity.Dish;
+
+import com.polyanski.common.dao.api.entities.DishEntity;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  * Time: 22:18
  */
 public interface DishParser {
-    public List<Dish> parseDishes(String webSiteURL);
+    public List<DishEntity> parseDishes(String webSiteURL);
 }

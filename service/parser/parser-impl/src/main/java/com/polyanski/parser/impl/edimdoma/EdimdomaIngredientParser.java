@@ -1,6 +1,6 @@
 package com.polyanski.parser.impl.edimdoma;
 
-import com.polyanski.coursework.db.api.entity.Ingredient;
+import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.parser.api.IngredientParser;
 import com.polyanski.parser.impl.edimdoma.filter.Filter;
 import org.jsoup.Jsoup;
@@ -19,11 +19,11 @@ import java.util.List;
  */
 public class EdimdomaIngredientParser implements IngredientParser {
     @Override
-    public Ingredient parseIngredient(String webSiteURL) {
+    public List<IngredientEntity> parseIngredient(String webSiteURL) {
+        List<IngredientEntity> ingredientEntities = new ArrayList<>();
+
         List<String> ingredients = new ArrayList<>();
         List<String> portions = new ArrayList<>();
-//        String ingredients = "";
-//        String portions = "";
         try {
             Document doc = Jsoup.connect(webSiteURL).get();
 
@@ -31,23 +31,23 @@ public class EdimdomaIngredientParser implements IngredientParser {
             Elements ports = doc.getElementsByAttributeValue("class",
                     "definition-list-table__td definition-list-table__td_value");
 
-//            ingredients += onlyIngred1(ingreds);
-//            portions += onlyPorts(ports);
-
             ingredients.addAll(onlyIngred(ingreds));
             portions.addAll(onlyPorts(ports));
+
+            for (int i = 0; i < ingredients.size(); i++) {
+                IngredientEntity ingredient = new IngredientEntity();
+                ingredient.setIngredient(ingredients.get(i));
+                ingredient.setPortion(portions.get(i));
+                ingredientEntities.add(ingredient);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new Ingredient(ingredients, portions);
+        return ingredientEntities;
     }
 
-    public String createIngredient(Element ingred) {
-        String smallIngredient = ingred.ownText();
-        return smallIngredient;
-    }
 
     public String createPortion(Element portion) {
         String smallPortion = portion.ownText();
@@ -66,13 +66,13 @@ public class EdimdomaIngredientParser implements IngredientParser {
     public List<String> onlyIngred(Elements ingredientsEl) {
         List<String> ingredients = new ArrayList<>();
         for (Element ingredient : ingredientsEl) {
-            String currentIngred = createIngredient1(ingredient);
+            String currentIngred = createIngredient(ingredient);
             ingredients.add(currentIngred);
         }
         return ingredients;
     }
 
-    public String createIngredient1(Element ingred) {
+    public String createIngredient(Element ingred) {
         Filter filter = new Filter();
 
         String smallIngredient = ingred.text() + ",";

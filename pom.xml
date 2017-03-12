@@ -12,8 +12,8 @@
     <modules>
         <module>visual</module>
         <module>parcer</module>
-        <module>database</module>
         <module>service</module>
+        <module>basis</module>
     </modules>
 
     <dependencies>

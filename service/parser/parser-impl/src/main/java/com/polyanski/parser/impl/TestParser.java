@@ -1,6 +1,6 @@
 package com.polyanski.parser.impl;
 
-import com.polyanski.coursework.db.api.entity.Dish;
+import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.parser.impl.edimdoma.EdimdomaDishParser;
 
 import java.util.List;
@@ -14,8 +14,8 @@ public class TestParser {
     public static void main(String[] args) {
         EdimdomaDishParser edimdomaDishParser = new EdimdomaDishParser();
 
-        List<Dish> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=4");
-        for (Dish dish : dishes) {
+        List<DishEntity> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=4");
+        for (DishEntity dish : dishes) {
             System.out.println(dish);
         }
     }
