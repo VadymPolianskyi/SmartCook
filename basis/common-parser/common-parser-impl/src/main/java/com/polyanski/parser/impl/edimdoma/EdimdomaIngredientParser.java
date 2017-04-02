@@ -7,6 +7,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
  * Date: 26.02.17
  * Time: 22:48
  */
+@Component
 public class EdimdomaIngredientParser implements IngredientParser {
     @Override
     public List<IngredientEntity> parseIngredient(String webSiteURL) {

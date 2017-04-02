@@ -24,7 +24,7 @@ public class DishRepositoryTest {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    private int id;
+    private String id;
 
     @Before
     public void setUp() throws Exception {
@@ -32,24 +32,26 @@ public class DishRepositoryTest {
         DishEntity dishEntity1= new DishEntity();
 
         dishEntity.setDishName("someDish");
+        dishEntity.setRefference("ffi03fsd.com");
+        dishEntity.setImgName("foiwefs4092ksjd.jpg");
         dishEntity1.setDishName("someDish1");
+        dishEntity1.setRefference("hgfe3493kf.com");
+        dishEntity1.setImgName("fhjdshf2fh82e9wf9hf.jpg");
 
-        IngredientEntity ingredientEntity = new IngredientEntity();
-        ingredientEntity.setIngredient("ingredient");
-        ingredientEntity.setPortion("100");
-
-        IngredientEntity ingredientEntity1 = new IngredientEntity();
-        ingredientEntity1.setIngredient("ingredient1");
-        ingredientEntity1.setPortion("101");
+//        IngredientEntity ingredientEntity = new IngredientEntity();
+//        ingredientEntity.setIngredient("ingredient");
+//        ingredientEntity.setPortion("100");
+//
+//        IngredientEntity ingredientEntity1 = new IngredientEntity();
+//        ingredientEntity1.setIngredient("ingredient1");
+//        ingredientEntity1.setPortion("101");
 
         dishRepository.save(dishEntity);
         dishRepository.save(dishEntity1);
 
-        ingredientRepository.save(ingredientEntity);
-        ingredientRepository.save(ingredientEntity1);
+//        ingredientRepository.save(ingredientEntity);
+//        ingredientRepository.save(ingredientEntity1);
 
-        dishEntity.setIngredientEntities(Arrays.asList(ingredientEntity));
-        dishEntity1.setIngredientEntities(Arrays.asList(ingredientEntity1));
         dishEntity.setImgName("fdfd");
         dishEntity1.setImgName("fdfd");
 
@@ -65,12 +67,9 @@ public class DishRepositoryTest {
     @Test
     public void testFetchData(){
         /*Test data retrieval*/
-        DishEntity dishEntity = dishRepository.findOne( this.id);
+        DishEntity dishEntity = dishRepository.findById(this.id);
         assertNotNull(dishEntity);
         assertEquals("fdfd", dishEntity.getImgName());
 
-        IngredientEntity ingredient = dishEntity.getIngredientEntities().get(0);
-
-        assertNotNull(ingredient);
     }
 }

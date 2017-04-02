@@ -10,4 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface DishRepository extends PagingAndSortingRepository<DishEntity, Integer> {
     DishEntity findByDishName(String dishName);
+    DishEntity findById(String id);
+
 }

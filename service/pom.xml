@@ -12,7 +12,8 @@
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>parser</module>
+        <module>search-service</module>
+        <module>content-parser-service</module>
     </modules>
 
 

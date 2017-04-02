@@ -9,7 +9,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,13 +25,18 @@ import java.util.List;
  */
 @Component
 public class EdimdomaDishParser implements DishParser {
+
+    private String url;
+
+    @Autowired
+    private AbstractImageParser imageParser;
+    @Autowired
+    private IngredientParser ingredientParser;
+
     @Override
     public List<DishEntity> parseDishes(String webSiteURL) {
         List<DishEntity> dishes = new ArrayList<>();
         try {
-            AbstractImageParser imageParser = new EdimdomaImageParser();
-            IngredientParser ingredientParser = new EdimdomaIngredientParser();
-
             Document doc = Jsoup.connect(
                         webSiteURL).get();
 
@@ -40,8 +48,8 @@ public class EdimdomaDishParser implements DishParser {
 
             int dishesCountOnPage = headers.size();
             for (int i = 0; i < dishesCountOnPage; i++) {
-                List<IngredientEntity> ingredients = ingredientParser.parseIngredient("https://www.edimdoma.ru" + urls.get(i).attr("href"));
-                DishEntity currentDish = createDish(headers.get(i), urls.get(i), images.get(i), ingredients);
+                url = "https://www.edimdoma.ru" + urls.get(i).attr("href");
+                DishEntity currentDish = createDish(headers.get(i), urls.get(i), images.get(i));
                 dishes.add(currentDish);
             }
         } catch (IOException e) {
@@ -50,7 +58,7 @@ public class EdimdomaDishParser implements DishParser {
         return dishes;
     }
 
-    private DishEntity createDish(Element titleEl, Element urlEl, String img, List<IngredientEntity> ingredients) {
+    private DishEntity createDish(Element titleEl, Element urlEl, String img) {
         String url, title;
 
         title = titleEl.child(0).text();
@@ -60,8 +68,11 @@ public class EdimdomaDishParser implements DishParser {
         dish.setDishName(title);
         dish.setImgName(img);
         dish.setRefference(url);
-        dish.setIngredientEntities(ingredients);
 
         return dish;
+    }
+
+    public List<IngredientEntity> getDishes() {
+        return ingredientParser.parseIngredient(url);
     }
 }

@@ -5,6 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.logging.Logger;
  * Date: 26.02.17
  * Time: 22:44
  */
+@Component
 public class EdimdomaImageParser extends AbstractImageParser {
 
     @Override

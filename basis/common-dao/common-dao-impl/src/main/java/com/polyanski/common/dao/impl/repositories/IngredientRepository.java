@@ -1,7 +1,10 @@
 package com.polyanski.common.dao.impl.repositories;
 
+import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
 
 /**
  * Author: vadym
@@ -9,4 +12,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * Time: 16:47
  */
 public interface IngredientRepository extends PagingAndSortingRepository<IngredientEntity, Integer> {
+    List<IngredientEntity> findByIngredient(String ingredient);
+    List<IngredientEntity> findByDishId(String dishId);
 }

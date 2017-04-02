@@ -1,8 +1,9 @@
 package com.polyanski.common.dao.api.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Author: vadym
@@ -16,9 +17,10 @@ public class DishEntity implements Serializable {
     private static final long serialVersionUID = -1737514696249524445L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
+    private String id;
 
     @Column(name = "dish_name")
     private String dishName;
@@ -29,15 +31,12 @@ public class DishEntity implements Serializable {
     @Column(name = "refference")
     private String refference;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<IngredientEntity> ingredientEntities;
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -65,46 +64,35 @@ public class DishEntity implements Serializable {
         this.refference = refference;
     }
 
-    public List<IngredientEntity> getIngredientEntities() {
-        return ingredientEntities;
-    }
-
-    public void setIngredientEntities(List<IngredientEntity> ingredientEntities) {
-        this.ingredientEntities = ingredientEntities;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DishEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         DishEntity that = (DishEntity) o;
 
-        if (id != that.id) return false;
-        if (!dishName.equals(that.dishName)) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (dishName != null ? !dishName.equals(that.dishName) : that.dishName != null) return false;
         if (imgName != null ? !imgName.equals(that.imgName) : that.imgName != null) return false;
-        if (!refference.equals(that.refference)) return false;
-        return ingredientEntities.equals(that.ingredientEntities);
+        return refference != null ? refference.equals(that.refference) : that.refference == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + dishName.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (dishName != null ? dishName.hashCode() : 0);
         result = 31 * result + (imgName != null ? imgName.hashCode() : 0);
-        result = 31 * result + refference.hashCode();
-        result = 31 * result + ingredientEntities.hashCode();
+        result = 31 * result + (refference != null ? refference.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "DishEntity{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", dishName='" + dishName + '\'' +
                 ", imgName='" + imgName + '\'' +
                 ", refference='" + refference + '\'' +
-                ", ingredientEntities=" + ingredientEntities +
                 '}';
     }
 }

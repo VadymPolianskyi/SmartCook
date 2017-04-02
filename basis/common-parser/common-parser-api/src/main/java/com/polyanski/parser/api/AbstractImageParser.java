@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class AbstractImageParser {
 
-    private final String folderPath = "images";
+    private final String folderPath = "visual/src/main/resources/images";
 
     public abstract List<String> parseImages(String webSiteURL);
 

@@ -1,5 +1,7 @@
 package com.polyanski.common.dao.impl.configuration;
 
+import com.polyanski.common.dao.impl.CreatorDB;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -31,6 +35,7 @@ public class CommonDaoAppCfg {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        CreatorDB.createDB();
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(createJpaVendorAdapter());
@@ -40,7 +45,21 @@ public class CommonDaoAppCfg {
 
         return entityManagerFactoryBean;
     }
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db.changelog-master.xml");
+        liquibase.setDataSource(dataSource());
+        liquibase.setDefaultSchema("SmartCook");
+        liquibase.setContexts("test,dev,prod");
 
+        liquibase.setDropFirst(false);
+        liquibase.setShouldRun(true);
+        Map params = new HashMap<>();
+        params.put("verbose", "true");
+        liquibase.setChangeLogParameters(params);
+        return liquibase;
+    }
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -64,8 +83,11 @@ public class CommonDaoAppCfg {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        properties.setProperty("hibernate.show_sql", "false");
+        properties.setProperty("hibernate.format_sql", "true");
         return properties;
     }
 }
