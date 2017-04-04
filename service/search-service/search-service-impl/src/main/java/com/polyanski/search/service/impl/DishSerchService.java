@@ -6,6 +6,7 @@ import com.polyanski.common.dao.impl.services.DishService;
 import com.polyanski.common.dao.impl.services.IngredientService;
 import com.polyanski.search.service.api.SerchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,13 +17,20 @@ import java.util.List;
  * Created by vadym_polyanski on 26.03.17.
  */
 @Component
-public class DishSerchService implements SerchService<DishEntity, String> {
+@Scope(value = "prototype")
+public class DishSerchService implements SerchService<DishEntity, IngredientEntity> {
 
     @Autowired
     private IngredientService ingredientService;
 
     @Autowired
-    private DishService dishService;
+    private DishService dishDAOService;
+
+
+    @Override
+    public List<IngredientEntity> getIngredientEntities(DishEntity dishEntity) {
+        return ingredientService.findByDishId(dishEntity.getId());
+    }
 
     @Override
     public List<DishEntity> serchingForKeys(List<String> keys) {
@@ -52,7 +60,7 @@ public class DishSerchService implements SerchService<DishEntity, String> {
         List<DishEntity> dishEntities = new ArrayList<>();
 
         for (String dishId : countOfIngred.keySet()) {
-            DishEntity currentDish = dishService.findByDishName(dishId);
+            DishEntity currentDish = dishDAOService.findByDishId(dishId);
             if (checkDishToIngredient(currentDish, countOfIngred.get(dishId))) {
                 dishEntities.add(currentDish);
             }
@@ -61,6 +69,7 @@ public class DishSerchService implements SerchService<DishEntity, String> {
     }
 
     private boolean checkDishToIngredient(DishEntity dish, int countOfIngredient) {
-        return ingredientService.findByDishId(dish.getId()).size() == countOfIngredient;
+        return ingredientService.findByDishId(dish.getId()).size() <= countOfIngredient;
     }
+
 }

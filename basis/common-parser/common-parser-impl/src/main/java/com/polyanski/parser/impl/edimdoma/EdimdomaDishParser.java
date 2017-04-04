@@ -23,7 +23,7 @@ import java.util.List;
  * Date: 26.02.17
  * Time: 22:48
  */
-@Component
+@Component("edindomaDishParser")
 public class EdimdomaDishParser implements DishParser {
 
     private String url;

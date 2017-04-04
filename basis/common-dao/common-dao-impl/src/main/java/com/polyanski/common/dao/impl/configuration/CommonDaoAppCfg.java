@@ -64,7 +64,7 @@ public class CommonDaoAppCfg {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl("jdbc:mariadb://localhost:3306/SmartCook");
+        dataSource.setUrl("jdbc:mariadb://localhost:3306/SmartCook?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "root" );
         return dataSource;

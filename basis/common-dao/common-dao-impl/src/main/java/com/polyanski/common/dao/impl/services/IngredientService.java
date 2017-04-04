@@ -19,7 +19,7 @@ public class IngredientService {
     private IngredientRepository ingredientRepository;
 
     public List<IngredientEntity> findByIngredientName(String ingredientName) {
-        return ingredientRepository.findByIngredient(ingredientName);
+        return ingredientRepository.findByIngredientContaining(ingredientName);
     }
     public List<IngredientEntity> findByDishId(String dishId){
         return ingredientRepository.findByDishId(dishId);

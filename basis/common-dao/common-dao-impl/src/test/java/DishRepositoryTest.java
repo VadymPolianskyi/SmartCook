@@ -31,10 +31,10 @@ public class DishRepositoryTest {
         DishEntity dishEntity= new DishEntity();
         DishEntity dishEntity1= new DishEntity();
 
-        dishEntity.setDishName("someDish");
+        dishEntity.setDishName("Пирожки");
         dishEntity.setRefference("ffi03fsd.com");
         dishEntity.setImgName("foiwefs4092ksjd.jpg");
-        dishEntity1.setDishName("someDish1");
+        dishEntity1.setDishName("равіолі");
         dishEntity1.setRefference("hgfe3493kf.com");
         dishEntity1.setImgName("fhjdshf2fh82e9wf9hf.jpg");
 

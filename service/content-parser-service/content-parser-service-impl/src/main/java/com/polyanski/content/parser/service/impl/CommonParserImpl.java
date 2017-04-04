@@ -5,8 +5,9 @@ import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.common.dao.impl.services.DishService;
 import com.polyanski.common.dao.impl.services.IngredientService;
 import com.polyanski.content.parser.service.api.CommonParser;
-import com.polyanski.parser.impl.edimdoma.EdimdomaDishParser;
+import com.polyanski.parser.api.DishParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,9 +16,10 @@ import java.util.List;
  * Date: 01.04.17
  * Time: 10:01
  */
+@Component("commonParser")
 public class CommonParserImpl implements CommonParser {
     @Autowired
-    EdimdomaDishParser edimdomaDishParser;
+    private DishParser edimdomaDishParser;
 
     @Autowired
     private DishService dishService;
@@ -49,8 +51,5 @@ public class CommonParserImpl implements CommonParser {
         }
     }
 
-    public static void main(String[] args) {
-        CommonParserImpl commonParser = new CommonParserImpl();
-        commonParser.parse();
-    }
+
 }

@@ -1,9 +1,6 @@
 package com.polyanski;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Main extends Application {
 
+    public static final SpringFxmlLoader loader = new SpringFxmlLoader();
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    public void start(Stage primaryStage) {
+        ShowController showController = SpringFxmlLoader.applicationContext.getBean(ShowController.class);
+        showController.showView(primaryStage);
     }
 
     public static void main(String[] args) {
