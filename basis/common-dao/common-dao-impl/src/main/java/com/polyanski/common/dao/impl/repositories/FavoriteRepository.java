@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface FavoriteRepository extends PagingAndSortingRepository<FavoriteDishEntity, String> {
     List<FavoriteDishEntity> findAll();
+    FavoriteDishEntity findByDishUuid(String dishId);
 }

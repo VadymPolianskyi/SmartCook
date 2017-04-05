@@ -31,7 +31,7 @@ public class DishSearchFavoriteService extends DishDetailsSearchService implemen
         List<DishEntity> dishEntities = new ArrayList<>();
 
         for (FavoriteDishEntity favoriteDishEntity : favoriteDishEntities) {
-            dishEntities.add(dishService.findByDishId(favoriteDishEntity.getDishId()));
+            dishEntities.add(dishService.findByDishId(favoriteDishEntity.getDishUuid()));
         }
         return dishEntities;
     }

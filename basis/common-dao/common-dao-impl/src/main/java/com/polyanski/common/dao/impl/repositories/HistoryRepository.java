@@ -1,6 +1,7 @@
 package com.polyanski.common.dao.impl.repositories;
 
 import com.polyanski.common.dao.api.entities.HistoryEntity;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
  * Date: 05.04.17
  * Time: 13:33
  */
-public interface HistoryRepository {
+public interface HistoryRepository extends PagingAndSortingRepository<HistoryEntity, String> {
     List<HistoryEntity> findAll();
 }

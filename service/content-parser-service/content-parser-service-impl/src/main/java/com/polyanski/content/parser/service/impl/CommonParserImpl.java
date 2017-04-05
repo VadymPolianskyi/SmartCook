@@ -30,7 +30,7 @@ public class CommonParserImpl implements CommonParser {
 
     @Override
     public void parse() {
-        while (pageNumber < 100) {
+        while (pageNumber < 10) {
             List<DishEntity> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=" + pageNumber);
             for (DishEntity dish : dishes) {
                 saveToDB(dish, edimdomaDishParser.getDishes());

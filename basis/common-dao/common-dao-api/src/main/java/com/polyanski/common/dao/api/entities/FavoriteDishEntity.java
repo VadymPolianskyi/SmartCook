@@ -22,8 +22,8 @@ public class FavoriteDishEntity implements Serializable {
     @Column(name = "id", unique = true)
     private String id;
 
-    @Column(name = "dish_id")
-    private String dishId;
+    @Column(name = "dish_uuid")
+    private String dishUuid;
 
     public String getId() {
         return id;
@@ -33,12 +33,12 @@ public class FavoriteDishEntity implements Serializable {
         this.id = id;
     }
 
-    public String getDishId() {
-        return dishId;
+    public String getDishUuid() {
+        return dishUuid;
     }
 
-    public void setDishId(String dishId) {
-        this.dishId = dishId;
+    public void setDishUuid(String dishUuid) {
+        this.dishUuid = dishUuid;
     }
 
     @Override
@@ -49,13 +49,13 @@ public class FavoriteDishEntity implements Serializable {
         FavoriteDishEntity that = (FavoriteDishEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return dishId != null ? dishId.equals(that.dishId) : that.dishId == null;
+        return dishUuid != null ? dishUuid.equals(that.dishUuid) : that.dishUuid == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (dishId != null ? dishId.hashCode() : 0);
+        result = 31 * result + (dishUuid != null ? dishUuid.hashCode() : 0);
         return result;
     }
 }

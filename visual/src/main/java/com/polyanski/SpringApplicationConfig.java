@@ -1,5 +1,7 @@
 package com.polyanski;
 
+import com.polyanski.search.service.api.SearchService;
+import com.polyanski.search.service.impl.DishSearchFavoriteService;
 import com.polyanski.search.service.impl.DishSearchService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,7 +24,13 @@ public class SpringApplicationConfig {
     }
 
     @Bean
-    public DishSearchService dishSerchService() {
+    public SearchService dishSerchService() {
         return new DishSearchService();
     }
+
+    @Bean
+    public DishSearchFavoriteService dishSearchFavoriteService() {
+        return new DishSearchFavoriteService();
+    }
+
 }
