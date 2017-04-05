@@ -2,24 +2,20 @@ package com.polyanski;
 
 import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
-import com.polyanski.search.service.api.SerchService;
-import com.polyanski.search.service.impl.DishSerchService;
+import com.polyanski.search.service.api.SearchService;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
@@ -32,7 +28,7 @@ import java.util.List;
  */
 public class ShowController {
     @Autowired
-    private SerchService dishSerchService;
+    private SearchService dishSerchService;
 
     @FXML
     private VBox dishPanel;
@@ -56,7 +52,7 @@ public class ShowController {
 
         List<DishEntity> dishes = dishSerchService.serchingForKeys(allIngreds);
         for (DishEntity dishEntity : dishes) {
-            List<IngredientEntity> ingredients = dishSerchService.getIngredientEntities(dishEntity);
+            List<IngredientEntity> ingredients = dishSerchService.getDetails(dishEntity);
             dishPanel.getChildren().add(createHBoxWithDish(dishEntity, ingredients));
         }
 
@@ -130,7 +126,7 @@ public class ShowController {
 
 
         buttonBox.setMargin(button, new Insets(0,0,0,20));
-        buttonBox.setMargin(favoriteButton, new Insets(0,0,0,40));
+        buttonBox.setMargin(favoriteButton, new Insets(6,0,0,40));
         vBox.setMargin(buttonBox, new Insets(0,0,0,350));
 
         hBox.getChildren().add(imageView);

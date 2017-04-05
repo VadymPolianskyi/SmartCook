@@ -44,4 +44,29 @@
         </modifySql>
     </changeSet>
 
+    <changeSet id="05032017" author="vadym">
+        <createTable tableName="favorite">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dish_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_favorite_dish" references="dish(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="050320172" author="vadym">
+        <createTable tableName="historyEntity">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dish_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_history_dish" references="dish(id)"/>
+            </column>
+            <column name="time" type="long">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

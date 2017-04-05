@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 08.03.17
  * Time: 16:47
  */
-public interface IngredientRepository extends PagingAndSortingRepository<IngredientEntity, Integer> {
+public interface IngredientRepository extends PagingAndSortingRepository<IngredientEntity, String> {
     List<IngredientEntity> findByIngredientContaining(String ingredient);
     List<IngredientEntity> findByDishId(String dishId);
 }

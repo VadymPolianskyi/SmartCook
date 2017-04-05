@@ -1,6 +1,6 @@
 package com.polyanski;
 
-import com.polyanski.search.service.impl.DishSerchService;
+import com.polyanski.search.service.impl.DishSearchService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class SpringApplicationConfig {
     }
 
     @Bean
-    public DishSerchService dishSerchService() {
-        return new DishSerchService();
+    public DishSearchService dishSerchService() {
+        return new DishSearchService();
     }
 }

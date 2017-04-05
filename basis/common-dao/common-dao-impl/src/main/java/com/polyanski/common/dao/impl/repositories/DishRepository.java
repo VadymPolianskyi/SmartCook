@@ -8,7 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * Date: 08.03.17
  * Time: 16:46
  */
-public interface DishRepository extends PagingAndSortingRepository<DishEntity, Integer> {
+public interface DishRepository extends PagingAndSortingRepository<DishEntity, String> {
     DishEntity findByDishName(String dishName);
     DishEntity findById(String id);
 

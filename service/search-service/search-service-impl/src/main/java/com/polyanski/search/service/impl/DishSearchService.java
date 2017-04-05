@@ -4,7 +4,7 @@ import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.common.dao.impl.services.DishService;
 import com.polyanski.common.dao.impl.services.IngredientService;
-import com.polyanski.search.service.api.SerchService;
+import com.polyanski.search.service.api.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,19 +18,10 @@ import java.util.List;
  */
 @Component
 @Scope(value = "prototype")
-public class DishSerchService implements SerchService<DishEntity, IngredientEntity> {
-
-    @Autowired
-    private IngredientService ingredientService;
+public class DishSearchService extends DishDetailsSearchService implements SearchService<DishEntity, IngredientEntity> {
 
     @Autowired
     private DishService dishDAOService;
-
-
-    @Override
-    public List<IngredientEntity> getIngredientEntities(DishEntity dishEntity) {
-        return ingredientService.findByDishId(dishEntity.getId());
-    }
 
     @Override
     public List<DishEntity> serchingForKeys(List<String> keys) {
