@@ -31,6 +31,7 @@ public class SpringFxmlLoader {
             });
             return loader.load(fxmlStream);
         } catch (IOException ioException) {
+            ioException.printStackTrace();
             throw new RuntimeException(ioException);
         }
     }

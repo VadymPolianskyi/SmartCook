@@ -69,7 +69,7 @@ public class DishSerchService implements SerchService<DishEntity, IngredientEnti
     }
 
     private boolean checkDishToIngredient(DishEntity dish, int countOfIngredient) {
-        return ingredientService.findByDishId(dish.getId()).size() <= countOfIngredient;
+        return ingredientService.findByDishId(dish.getId()).size()+5 <= countOfIngredient;
     }
 
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.polyanski.ShowController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.polyanski.ShowController">
    <children>
       <MenuBar>
         <menus>
@@ -31,18 +32,21 @@
       </MenuBar>
       <AnchorPane blendMode="BLUE" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="600.0" text="Smart Cook" textAlignment="CENTER" textFill="#c6fa07" textOverrun="LEADING_ELLIPSIS" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="600.0" style="-fx-background-color: white;" text="Smart Cook" textAlignment="CENTER" textFill="#c6fa07" textOverrun="LEADING_ELLIPSIS" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Ubuntu Bold" size="44.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </Label>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="49.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="ingredientsTextField" layoutX="189.0" layoutY="11.0" prefHeight="25.0" prefWidth="312.0" promptText="ingredient 1, ingredient 2, ingredient 3,..." />
+            <TextField fx:id="ingredientsTextField" layoutX="189.0" layoutY="11.0" prefHeight="25.0" prefWidth="502.0" promptText="ingredient 1, ingredient 2, ingredient 3,..." />
             <Label layoutX="16.0" layoutY="16.0" prefHeight="15.0" prefWidth="155.0" text="Enter your ingredients:" />
-            <Button layoutX="524.0" layoutY="11.0" mnemonicParsing="false" onAction="#buttonClick" text="Button" />
+            <Button defaultButton="true" layoutX="714.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonClick" text="Search.." />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" top="10.0" />
@@ -50,13 +54,13 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane prefHeight="323.0" prefWidth="600.0">
+            <ScrollPane prefHeight="323.0" prefWidth="800.0">
                <content>
-                  <VBox fx:id="dishPanel" prefHeight="323.0" prefWidth="600.0">
+                  <VBox fx:id="dishPanel" prefHeight="323.0" prefWidth="800.0">
                      <children>
-                        <AnchorPane fx:id="first" prefHeight="330.0" prefWidth="600.0">
+                        <AnchorPane fx:id="first" prefHeight="330.0" prefWidth="800.0">
                            <children>
-                              <Label fx:id="firstLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="323.0" prefWidth="600.0" text="You'll see dishes here.." textFill="#9a9a9a" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label fx:id="firstLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="323.0" prefWidth="800.0" text="You'll see dishes here.." textFill="#9a9a9a" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
