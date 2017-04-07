@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by vadym_polyanski on 23.03.17.
  */
-public class ShowController {
+public class ShowController implements Controller {
     @Autowired
     private SearchService dishSerchService;
 
@@ -33,7 +33,6 @@ public class ShowController {
     private FavoriteDishService favoriteDishService;
 
     //соус,морковь,лапша,кинза,соев,сельлерей,капуста,перец,растительное,чеснок,свинина,лук,сахар,соль,банан,надуги,мука,молоко,масло,морква,капуста,чечевица,шоколад
-
 
     @FXML
     private VBox dishPanel;
@@ -47,6 +46,9 @@ public class ShowController {
     @FXML
     private Label firstLabel;
 
+    @FXML
+    public void initialize() throws InterruptedException {
+    }
 
     public void buttonClick() {
         clearField();
@@ -72,22 +74,16 @@ public class ShowController {
     }
 
 
-
-
-
     private void clearField() {
         first.setMaxSize(0, 0);
         firstLabel.setText("");
         firstLabel.setFont(Font.font(0));
     }
 
-
-    public void showView(Stage mainStage) {
-        Parent root = (Parent) Main.loader.load("/smartCook.fxml");
-        mainStage.setTitle("SmartCook");
-        mainStage.setScene(new Scene(root));
-        mainStage.setResizable(false);
-        mainStage.show();
+    @Override
+    public void showWindow(Stage loadStage) {
+        StageLoader.showWindow(loadStage, "smartCook.fxml", "SmartCook");
     }
-
 }
+
+

@@ -24,6 +24,11 @@ public class SpringApplicationConfig {
     }
 
     @Bean
+    public LoadController loadController() {
+        return new LoadController();
+    }
+
+    @Bean
     public SearchService dishSerchService() {
         return new DishSearchService();
     }
