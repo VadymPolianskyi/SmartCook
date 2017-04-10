@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface DishParser {
     public List<DishEntity> parseDishes(String webSiteURL);
-    public List<IngredientEntity> getDishes();
+    public List<IngredientEntity> getIngredients(DishEntity dishEntity);
 }

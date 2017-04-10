@@ -24,7 +24,6 @@ public class TestParser {
         List<DishEntity> dishes = dishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=4");
         for (DishEntity dish : dishes) {
             System.out.println(dish);
-            System.out.println(dishParser.getDishes());
 
         }
     }

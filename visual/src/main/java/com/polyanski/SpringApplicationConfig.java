@@ -1,5 +1,8 @@
 package com.polyanski;
 
+import com.polyanski.controller.MainController;
+import com.polyanski.controller.LoadController;
+import com.polyanski.controller.FavoriteController;
 import com.polyanski.search.service.api.SearchService;
 import com.polyanski.search.service.impl.DishSearchFavoriteService;
 import com.polyanski.search.service.impl.DishSearchService;
@@ -19,8 +22,8 @@ import org.springframework.context.annotation.Lazy;
 public class SpringApplicationConfig {
 
     @Bean
-    public ShowController showController() {
-        return new ShowController();
+    public MainController showController() {
+        return new MainController();
     }
 
     @Bean
@@ -38,4 +41,8 @@ public class SpringApplicationConfig {
         return new DishSearchFavoriteService();
     }
 
+    @Bean
+    public FavoriteController favoriteController() {
+        return new FavoriteController();
+    }
 }

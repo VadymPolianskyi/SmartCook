@@ -1,13 +1,14 @@
-package com.polyanski;
+package com.polyanski.controller;
 
+import com.polyanski.StageLoader;
 import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.common.dao.impl.services.FavoriteDishService;
+import com.polyanski.controller.Controller;
+import com.polyanski.elements.DishHBox;
 import com.polyanski.search.service.api.SearchService;
 import com.polyanski.search.service.impl.DishSearchFavoriteService;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by vadym_polyanski on 23.03.17.
  */
-public class ShowController implements Controller {
+public class MainController implements Controller {
     @Autowired
     private SearchService dishSerchService;
 
@@ -82,7 +83,6 @@ public class ShowController implements Controller {
 
     @Override
     public void showWindow(Stage loadStage) {
-        StageLoader.showWindow(loadStage, "smartCook.fxml", "SmartCook");
     }
 }
 

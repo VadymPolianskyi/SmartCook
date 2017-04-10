@@ -5,6 +5,8 @@ import com.polyanski.common.dao.impl.repositories.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Author: vadym
  * Date: 12.03.17
@@ -25,5 +27,9 @@ public class DishService {
 
     public DishEntity insert(DishEntity dishEntity) {
         return dishRepository.save(dishEntity);
+    }
+
+    public List<DishEntity> findAll(){
+        return dishRepository.findAll();
     }
 }

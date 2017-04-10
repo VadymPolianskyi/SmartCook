@@ -1,4 +1,4 @@
-package com.polyanski;
+package com.polyanski.elements;
 
 import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;

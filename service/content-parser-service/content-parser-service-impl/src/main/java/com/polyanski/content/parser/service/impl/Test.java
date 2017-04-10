@@ -15,6 +15,6 @@ public class Test {
         context.refresh();
 
         CommonParser commonParser = (CommonParserImpl) context.getBean("commonParser");
-        commonParser.parse();
+//        commonParser.parse();
     }
 }

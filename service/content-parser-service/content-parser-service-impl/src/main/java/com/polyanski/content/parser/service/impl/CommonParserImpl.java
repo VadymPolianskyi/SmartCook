@@ -26,16 +26,14 @@ public class CommonParserImpl implements CommonParser {
     @Autowired
     private IngredientService ingredientService ;
 
-    private int pageNumber = 0;
-
     @Override
-    public void parse() {
-        while (pageNumber < 10) {
-            List<DishEntity> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=" + pageNumber);
+    public void parse(int from, int to) {
+        while (from <= to) {
+            List<DishEntity> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=" + from);
             for (DishEntity dish : dishes) {
-                saveToDB(dish, edimdomaDishParser.getDishes());
+                saveToDB(dish, edimdomaDishParser.getIngredients(dish));
             }
-            pageNumber++;
+            from++;
         }
 
 

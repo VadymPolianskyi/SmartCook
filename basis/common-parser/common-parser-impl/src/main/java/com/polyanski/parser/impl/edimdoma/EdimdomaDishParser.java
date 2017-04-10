@@ -26,7 +26,7 @@ import java.util.List;
 @Component("edindomaDishParser")
 public class EdimdomaDishParser implements DishParser {
 
-    private String url;
+    private final String URL = "https://www.edimdoma.ru";
 
     @Autowired
     private AbstractImageParser imageParser;
@@ -48,7 +48,6 @@ public class EdimdomaDishParser implements DishParser {
 
             int dishesCountOnPage = headers.size();
             for (int i = 0; i < dishesCountOnPage; i++) {
-                url = "https://www.edimdoma.ru" + urls.get(i).attr("href");
                 DishEntity currentDish = createDish(headers.get(i), urls.get(i), images.get(i));
                 dishes.add(currentDish);
             }
@@ -72,7 +71,8 @@ public class EdimdomaDishParser implements DishParser {
         return dish;
     }
 
-    public List<IngredientEntity> getDishes() {
-        return ingredientParser.parseIngredient(url);
+    @Override
+    public List<IngredientEntity> getIngredients(DishEntity dishEntity) {
+        return ingredientParser.parseIngredient(URL + dishEntity.getRefference());
     }
 }

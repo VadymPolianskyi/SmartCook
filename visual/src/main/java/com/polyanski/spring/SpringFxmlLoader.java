@@ -1,5 +1,6 @@
-package com.polyanski;
+package com.polyanski.spring;
 
+import com.polyanski.SpringApplicationConfig;
 import javafx.fxml.FXMLLoader;
 import javafx.util.Callback;
 import org.springframework.context.ApplicationContext;

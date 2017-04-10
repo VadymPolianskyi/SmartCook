@@ -1,4 +1,4 @@
-package com.polyanski;
+package com.polyanski.controller;
 
 import javafx.stage.Stage;
 

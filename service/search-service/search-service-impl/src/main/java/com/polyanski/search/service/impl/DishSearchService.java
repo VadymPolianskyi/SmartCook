@@ -60,7 +60,7 @@ public class DishSearchService extends DishDetailsSearchService implements Searc
     }
 
     private boolean checkDishToIngredient(DishEntity dish, int countOfIngredient) {
-        return ingredientService.findByDishId(dish.getId()).size() <= countOfIngredient+15;
+        return ingredientService.findByDishId(dish.getId()).size() <= countOfIngredient;
     }
 
 }

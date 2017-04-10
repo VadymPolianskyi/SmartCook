@@ -6,5 +6,5 @@ package com.polyanski.content.parser.service.api;
  * Time: 10:00
  */
 public interface CommonParser {
-    void parse();
+    void parse(int from, int to);
 }
