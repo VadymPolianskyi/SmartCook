@@ -1,15 +1,13 @@
-package com.polyanski.parser.impl.edimdoma;
+package com.polyanski.content.parser.service.impl.edimdoma;
 
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.parser.api.IngredientParser;
-import com.polyanski.parser.impl.edimdoma.filter.Filter;
+import com.polyanski.content.parser.service.impl.edimdoma.filter.Filter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;

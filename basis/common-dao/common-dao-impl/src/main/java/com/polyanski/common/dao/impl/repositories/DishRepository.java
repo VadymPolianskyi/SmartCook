@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 08.03.17
  * Time: 16:46
  */
-public interface DishRepository extends PagingAndSortingRepository<DishEntity, String> {
+public interface DishRepository extends BaseRepository<DishEntity> {
     DishEntity findByDishName(String dishName);
     DishEntity findById(String id);
     List<DishEntity> findAll();

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.polyanski.controller.HistoryController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#exitClick" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="See">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#favoriteClick" text="Favorites" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutClick" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane blendMode="BLUE" prefHeight="88.0" prefWidth="800.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="81.0" prefWidth="800.0" text="History" textFill="#b91111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Ubuntu" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ScrollPane prefHeight="460.0" prefWidth="800.0">
+               <content>
+                  <VBox fx:id="dishPanel" prefHeight="460.0" prefWidth="800.0">
+                     <children>
+                        <AnchorPane fx:id="first" prefHeight="460.0" prefWidth="800.0">
+                           <children>
+                              <Label fx:id="firstLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="460.0" prefWidth="800.0" text="You'll see dishes here.." textFill="#9a9a9a" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children></VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="125.0" prefWidth="800.0">
+         <children>
+            <Button fx:id="closeButton" layoutX="724.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeButtonClick" text="Close" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

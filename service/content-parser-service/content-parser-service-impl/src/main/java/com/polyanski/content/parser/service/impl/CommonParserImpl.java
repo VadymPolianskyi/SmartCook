@@ -16,11 +16,12 @@ import java.util.List;
  * Date: 01.04.17
  * Time: 10:01
  */
-@Component("commonParser")
+@Component
 public class CommonParserImpl implements CommonParser {
+
+    private final String EDIM_DOMA_PAGE_NAME = "https://www.edimdoma.ru/retsepty?page=";
     @Autowired
     private DishParser edimdomaDishParser;
-
     @Autowired
     private DishService dishService;
     @Autowired
@@ -29,23 +30,19 @@ public class CommonParserImpl implements CommonParser {
     @Override
     public void parse(int from, int to) {
         while (from <= to) {
-            List<DishEntity> dishes = edimdomaDishParser.parseDishes("https://www.edimdoma.ru/retsepty?page=" + from);
+            List<DishEntity> dishes = edimdomaDishParser.parseDishes(EDIM_DOMA_PAGE_NAME + from);
             for (DishEntity dish : dishes) {
                 saveToDB(dish, edimdomaDishParser.getIngredients(dish));
             }
             from++;
         }
-
-
-
     }
 
     private void saveToDB(DishEntity dish, List<IngredientEntity> ingredients) {
-        dish = dishService.insert(dish);
-        String dishId = dish.getId();
+        String dishId = dishService.insert(dish).getId();
         for (IngredientEntity ingredient : ingredients) {
             ingredient.setDishId(dishId);
-            ingredientService.insert(ingredient);
+            ingredientService.add(ingredient);
         }
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 public abstract  class DishDetailsSearchService implements DetailsSearchService<DishEntity, IngredientEntity> {
 
     @Autowired
-    protected DishService dishService;
+    protected DishService dishDAOService;
 
     @Autowired
     protected IngredientService ingredientService;

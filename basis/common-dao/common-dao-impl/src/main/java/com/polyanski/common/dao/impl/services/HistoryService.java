@@ -15,12 +15,13 @@ import java.util.List;
  * Time: 13:34
  */
 @Component
-public class HistoryService {
-
-    @Autowired
-    HistoryRepository historyRepository;
+public class HistoryService extends BaseService<HistoryEntity, HistoryRepository> {
 
     public List<HistoryEntity> fingAll() {
-        return historyRepository.findAll();
+        return getRepository().findAll();
+    }
+
+    public HistoryEntity insert(HistoryEntity historyEntity) {
+        return getRepository().save(historyEntity);
     }
 }

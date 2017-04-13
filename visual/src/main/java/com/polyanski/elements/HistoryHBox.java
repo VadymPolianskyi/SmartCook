@@ -20,7 +20,7 @@ public class HistoryHBox extends HBox {
             .toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 
-    public HistoryHBox(DishEntity dish) {
+    public HistoryHBox(DishEntity dish, String time) {
         Label dishNameLabel = new Label(dish.getDishName());
         this.getChildren().add(dishNameLabel);
         Button goButton = createGoButton(dish.getRefference());

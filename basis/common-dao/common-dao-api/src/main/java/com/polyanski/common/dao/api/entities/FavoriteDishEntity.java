@@ -12,26 +12,12 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "favorite")
-public class FavoriteDishEntity implements Serializable {
+public class FavoriteDishEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -5437292840679941642L;
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
-
     @Column(name = "dish_uuid")
     private String dishUuid;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getDishUuid() {
         return dishUuid;

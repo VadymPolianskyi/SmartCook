@@ -1,4 +1,4 @@
-package com.polyanski.parser.impl.edimdoma.filter;
+package com.polyanski.content.parser.service.impl.edimdoma.filter;
 
 /**
  * Author: vadym

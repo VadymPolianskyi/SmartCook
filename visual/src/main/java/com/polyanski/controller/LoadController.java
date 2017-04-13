@@ -1,18 +1,13 @@
 package com.polyanski.controller;
 
-import com.polyanski.common.dao.impl.services.DishService;
+import com.polyanski.content.parser.service.api.CommonParser;
 import com.polyanski.content.parser.service.impl.CommonParserImpl;
-import com.polyanski.controller.Controller;
-import com.polyanski.controller.MainController;
 import com.polyanski.StageLoader;
 import com.polyanski.load.LoadTask;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -20,22 +15,19 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import javafx.concurrent.Task;
 
-import java.net.SocketTimeoutException;
-
-
 /**
  * Author: vadym_polyanski
  * Date: 06.04.17
  * Time: 9:21
  */
-public class LoadController implements Controller {
+public class LoadController {
 
     private Stage stage;
     private int counterOfSitePage = -1;
     private final int SITE_STEP = 2;
 
     @Autowired
-    private CommonParserImpl commonParser;
+    private CommonParser commonParser;
 
     @FXML
     private ProgressBar progressBar;
@@ -95,14 +87,12 @@ public class LoadController implements Controller {
         new Thread(copyWorker).start();
     }
 
-    @Override
-    public void showWindow(Stage stage) {
-        this.stage = stage;
-        StageLoader.showWindow(stage, "load.fxml", "Loading..");
+    public void openLoad() {
+        StageLoader.showWindow("load.fxml", "Loading..");
     }
 
     public void openMain() {
-        StageLoader.showWindow(stage, "smartCook.fxml", "SmartCook");
+        StageLoader.showWindow("smartCook.fxml", "SmartCook");
 
     }
 }

@@ -1,4 +1,4 @@
-package com.polyanski.parser.impl.edimdoma;
+package com.polyanski.content.parser.service.impl.edimdoma;
 
 import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
@@ -10,9 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ import java.util.List;
  * Date: 26.02.17
  * Time: 22:48
  */
-@Component("edindomaDishParser")
+@Component
 public class EdimdomaDishParser implements DishParser {
 
     private final String URL = "https://www.edimdoma.ru";

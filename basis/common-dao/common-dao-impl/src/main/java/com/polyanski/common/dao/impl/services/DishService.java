@@ -13,23 +13,21 @@ import java.util.List;
  * Time: 23:07
  */
 @Component
-public class DishService {
-    @Autowired
-    DishRepository dishRepository;
+public class DishService extends BaseService<DishEntity, DishRepository> {
 
     public DishEntity findByDishName(String dishName) {
-        return dishRepository.findByDishName(dishName);
+        return getRepository().findByDishName(dishName);
     }
 
     public DishEntity findByDishId(String dishId) {
-        return dishRepository.findById(dishId);
+        return getRepository().findById(dishId);
     }
 
     public DishEntity insert(DishEntity dishEntity) {
-        return dishRepository.save(dishEntity);
+        return getRepository().save(dishEntity);
     }
 
     public List<DishEntity> findAll(){
-        return dishRepository.findAll();
+        return getRepository().findAll();
     }
 }

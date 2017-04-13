@@ -19,11 +19,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         LoadController loadController = SpringFxmlLoader.applicationContext.getBean(LoadController.class);
+        StageLoader.setStage(primaryStage);
         if (dishService.findAll().size() != 0) {
-            loadController.showWindow(primaryStage);
+            loadController.openLoad();
             loadController.openMain();
         } else {
-            loadController.showWindow(primaryStage);
+            loadController.openLoad();
         }
     }
 

@@ -1,8 +1,10 @@
 package com.polyanski.elements;
 
 import com.polyanski.common.dao.api.entities.DishEntity;
+import com.polyanski.common.dao.api.entities.HistoryEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.common.dao.impl.services.FavoriteDishService;
+import com.polyanski.common.dao.impl.services.HistoryService;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,13 +30,17 @@ public class DishHBox extends HBox{
 
     private FavoriteDishService favoriteDishService;
 
+    private HistoryService historyService;
+
     BackgroundImage backgroundImageBefore = new BackgroundImage( new Image( getClass().getResource("/hearts/beforeLike.png")
             .toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     BackgroundImage backgroundImageAfter = new BackgroundImage( new Image( getClass().getResource("/hearts/like.png")
             .toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-    public DishHBox(DishEntity dish, List<IngredientEntity> ingredients, FavoriteDishService favoriteDishService) {
+    public DishHBox(DishEntity dish, List<IngredientEntity> ingredients,
+                    FavoriteDishService favoriteDishService, HistoryService historyService) {
         this.favoriteDishService = favoriteDishService;
+        this.historyService = historyService;
         ImageView image = imageCreation(dish.getImgName());
 
         this.getChildren().add(image);
@@ -77,7 +83,7 @@ public class DishHBox extends HBox{
 
     private HBox buttonBoxCreation(String dishId, String dishRefference) {
         HBox buttonBox = new HBox();
-        Button moreButton = moreButtonCreation(dishRefference);
+        Button moreButton = moreButtonCreation(dishRefference, dishId);
         Button favoriteHeartButton = favoriteHeartButtonCreation(dishId);
 
         buttonBox.getChildren().add(favoriteHeartButton);
@@ -114,7 +120,7 @@ public class DishHBox extends HBox{
 
         favoriteButton.setOnAction(event -> {
             System.out.println(favoriteDishService == null);
-            if (favoriteDishService.isInDB(dishId)){
+            if (isInDB(dishId)){
                 favoriteDishService.delete(dishId);
                 favoriteButton.setBackground(backgroundBefore);
             } else {
@@ -122,7 +128,11 @@ public class DishHBox extends HBox{
                 favoriteButton.setBackground(backgroundAfter);
             }
         });
-        favoriteButton.setBackground(backgroundBefore);
+        if (isInDB(dishId)) {
+            favoriteButton.setBackground(backgroundAfter);
+        } else {
+            favoriteButton.setBackground(backgroundBefore);
+        }
         return favoriteButton;
     }
 
@@ -141,10 +151,11 @@ public class DishHBox extends HBox{
         return imageView;
     }
 
-    private Button moreButtonCreation(String dishSiteUrl) {
+    private Button moreButtonCreation(String dishSiteUrl, String dishId) {
         Button button = new Button("More..");
         button.setOnAction(event -> {
             openSite("https://www.edimdoma.ru" + dishSiteUrl);
+            historyService.insert(new HistoryEntity(dishId, System.currentTimeMillis()));
         });
 
         return button;
@@ -159,5 +170,10 @@ public class DishHBox extends HBox{
             e.printStackTrace();
         }
     }
+
+    public boolean isInDB(String dishId) {
+        return favoriteDishService.findByDishId(dishId) != null;
+    }
+
 
 }

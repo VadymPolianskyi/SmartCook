@@ -13,19 +13,12 @@ import java.util.List;
  * Time: 23:07
  */
 @Component
-public class IngredientService {
-
-    @Autowired
-    private IngredientRepository ingredientRepository;
+public class IngredientService extends BaseService<IngredientEntity, IngredientRepository> {
 
     public List<IngredientEntity> findByIngredientName(String ingredientName) {
-        return ingredientRepository.findByIngredientContaining(ingredientName);
+        return getRepository().findByIngredientContaining(ingredientName);
     }
     public List<IngredientEntity> findByDishId(String dishId){
-        return ingredientRepository.findByDishId(dishId);
-    }
-
-    public IngredientEntity insert(IngredientEntity ingredientEntity) {
-        return ingredientRepository.save(ingredientEntity);
+        return getRepository().findByDishId(dishId);
     }
 }

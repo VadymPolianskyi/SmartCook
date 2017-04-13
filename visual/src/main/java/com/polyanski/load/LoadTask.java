@@ -3,6 +3,7 @@ package com.polyanski.load;
 import com.polyanski.content.parser.service.impl.CommonParserImpl;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

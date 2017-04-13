@@ -49,7 +49,7 @@
             </column>
         </createTable>
 
-        <createTable tableName="historyEntity">
+        <createTable tableName="history">
             <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

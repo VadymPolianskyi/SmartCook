@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 05.04.17
  * Time: 13:31
  */
-public interface FavoriteRepository extends PagingAndSortingRepository<FavoriteDishEntity, String> {
+public interface FavoriteRepository extends BaseRepository<FavoriteDishEntity> {
     List<FavoriteDishEntity> findAll();
     FavoriteDishEntity findByDishUuid(String dishId);
 }

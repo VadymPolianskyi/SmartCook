@@ -10,6 +10,6 @@ import java.util.List;
  * Date: 05.04.17
  * Time: 13:33
  */
-public interface HistoryRepository extends PagingAndSortingRepository<HistoryEntity, String> {
+public interface HistoryRepository extends BaseRepository<HistoryEntity> {
     List<HistoryEntity> findAll();
 }

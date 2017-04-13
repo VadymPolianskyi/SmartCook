@@ -12,36 +12,27 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "history")
-public class HistoryEntity implements Serializable {
+public class HistoryEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 2802295602905324404L;
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
-
-    @Column(name = "dish_id")
-    private String dishId;
+    @Column(name = "dish_uuid")
+    private String dishUuid;
 
     @Column(name = "time")
     private Long time;
 
-    public String getId() {
-        return id;
+    public HistoryEntity(String dishUuid, Long time) {
+        this.dishUuid = dishUuid;
+        this.time = time;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getDishUuid() {
+        return dishUuid;
     }
 
-    public String getDishId() {
-        return dishId;
-    }
-
-    public void setDishId(String dishId) {
-        this.dishId = dishId;
+    public void setDishUuid(String dishUuid) {
+        this.dishUuid = dishUuid;
     }
 
     public Long getTime() {
@@ -57,17 +48,17 @@ public class HistoryEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HistoryEntity historyEntity = (HistoryEntity) o;
+        HistoryEntity that = (HistoryEntity) o;
 
-        if (id != null ? !id.equals(historyEntity.id) : historyEntity.id != null) return false;
-        if (dishId != null ? !dishId.equals(historyEntity.dishId) : historyEntity.dishId != null) return false;
-        return time != null ? time.equals(historyEntity.time) : historyEntity.time == null;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (dishUuid != null ? !dishUuid.equals(that.dishUuid) : that.dishUuid != null) return false;
+        return time != null ? time.equals(that.time) : that.time == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (dishId != null ? dishId.hashCode() : 0);
+        result = 31 * result + (dishUuid != null ? dishUuid.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
     }

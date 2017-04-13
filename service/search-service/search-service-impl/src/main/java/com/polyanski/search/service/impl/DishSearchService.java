@@ -3,7 +3,6 @@ package com.polyanski.search.service.impl;
 import com.polyanski.common.dao.api.entities.DishEntity;
 import com.polyanski.common.dao.api.entities.IngredientEntity;
 import com.polyanski.common.dao.impl.services.DishService;
-import com.polyanski.common.dao.impl.services.IngredientService;
 import com.polyanski.search.service.api.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,15 +16,10 @@ import java.util.List;
  * Created by vadym_polyanski on 26.03.17.
  */
 @Component
-@Scope(value = "prototype")
 public class DishSearchService extends DishDetailsSearchService implements SearchService<DishEntity, IngredientEntity> {
-
-    @Autowired
-    private DishService dishDAOService;
 
     @Override
     public List<DishEntity> serchingForKeys(List<String> keys) {
-        List<DishEntity> dishEntities = new ArrayList<>();
         List<IngredientEntity> ingredientEntities = new ArrayList<>();
 
         for (String ingredientName : keys) {
@@ -47,20 +41,20 @@ public class DishSearchService extends DishDetailsSearchService implements Searc
         return searchDishes(counterOfIngredients);
     }
 
-    private List<DishEntity> searchDishes(HashMap<String, Integer> countOfIngred) {
+    private List<DishEntity> searchDishes(HashMap<String, Integer> numberOfIngredientsMap) {
         List<DishEntity> dishEntities = new ArrayList<>();
 
-        for (String dishId : countOfIngred.keySet()) {
+        for (String dishId : numberOfIngredientsMap.keySet()) {
             DishEntity currentDish = dishDAOService.findByDishId(dishId);
-            if (checkDishToIngredient(currentDish, countOfIngred.get(dishId))) {
+            if (checkDishToIngredient(currentDish, numberOfIngredientsMap.get(dishId))) {
                 dishEntities.add(currentDish);
             }
         }
         return dishEntities;
     }
 
-    private boolean checkDishToIngredient(DishEntity dish, int countOfIngredient) {
-        return ingredientService.findByDishId(dish.getId()).size() <= countOfIngredient;
+    private boolean checkDishToIngredient(DishEntity dish, int numberOfIngredients) {
+        return ingredientService.findByDishId(dish.getId()).size() <= numberOfIngredients;
     }
 
 }

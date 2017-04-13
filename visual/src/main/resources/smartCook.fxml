@@ -15,18 +15,18 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#exitClick" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="See">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#favoriteClick" text="Favorites" />
-                  <MenuItem mnemonicParsing="false" text="History" />
+                  <MenuItem mnemonicParsing="false" onAction="#historyClick" text="History" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#aboutClick" text="About" />
             </items>
           </Menu>
         </menus>

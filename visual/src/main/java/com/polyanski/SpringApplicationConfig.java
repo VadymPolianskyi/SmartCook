@@ -1,5 +1,7 @@
 package com.polyanski;
 
+import com.polyanski.common.dao.impl.services.FavoriteDishService;
+import com.polyanski.common.dao.impl.services.HistoryService;
 import com.polyanski.controller.MainController;
 import com.polyanski.controller.LoadController;
 import com.polyanski.controller.FavoriteController;
@@ -34,6 +36,16 @@ public class SpringApplicationConfig {
     @Bean
     public SearchService dishSerchService() {
         return new DishSearchService();
+    }
+
+    @Bean
+    public FavoriteDishService favoriteDishService() {
+        return new FavoriteDishService();
+    }
+
+    @Bean
+    public HistoryService historyService() {
+        return new HistoryService();
     }
 
     @Bean
