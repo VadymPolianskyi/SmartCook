@@ -2,6 +2,7 @@ package com.polyanski;
 
 import com.polyanski.common.dao.impl.services.FavoriteDishService;
 import com.polyanski.common.dao.impl.services.HistoryService;
+import com.polyanski.controller.HistoryController;
 import com.polyanski.controller.MainController;
 import com.polyanski.controller.LoadController;
 import com.polyanski.controller.FavoriteController;
@@ -56,5 +57,10 @@ public class SpringApplicationConfig {
     @Bean
     public FavoriteController favoriteController() {
         return new FavoriteController();
+    }
+
+    @Bean
+    public HistoryController historyController() {
+        return new HistoryController();
     }
 }
